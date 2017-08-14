@@ -5,13 +5,15 @@
 #
 
 # Pull base image.
-FROM dockerfile/ubuntu
+FROM ubuntu:16.04
 
 # Install LXDE and VNC server.
 RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y lxde-core lxterminal tightvncserver && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  touch /root/.Xresources && \
+  touch /root/.Xauthority
 
 # Define working directory.
 WORKDIR /data
